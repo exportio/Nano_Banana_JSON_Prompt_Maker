@@ -10,9 +10,9 @@ interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export const TextInput: React.FC<TextInputProps> = ({ label, helperText, className, ...props }) => (
   <div className="mb-4">
-    <label className="block text-sm font-medium text-slate-300 mb-1">{label}</label>
+    <label className="block text-sm font-medium text-slate-700 mb-1">{label}</label>
     <input
-      className={`w-full bg-slate-800 border border-slate-700 rounded-md px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${className}`}
+      className={`w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all shadow-sm ${className}`}
       {...props}
     />
     {helperText && <p className="text-xs text-slate-500 mt-1">{helperText}</p>}
@@ -26,10 +26,10 @@ interface SelectInputProps extends React.SelectHTMLAttributes<HTMLSelectElement>
 
 export const SelectInput: React.FC<SelectInputProps> = ({ label, options, ...props }) => (
   <div className="mb-4">
-    <label className="block text-sm font-medium text-slate-300 mb-1">{label}</label>
+    <label className="block text-sm font-medium text-slate-700 mb-1">{label}</label>
     <div className="relative">
       <select
-        className="w-full appearance-none bg-slate-800 border border-slate-700 rounded-md px-3 py-2 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+        className="w-full appearance-none bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all shadow-sm"
         {...props}
       >
         {options.map((opt) => (
@@ -38,7 +38,7 @@ export const SelectInput: React.FC<SelectInputProps> = ({ label, options, ...pro
           </option>
         ))}
       </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-400">
+      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
         <ChevronDown size={14} />
       </div>
     </div>
@@ -53,10 +53,10 @@ export const Checkbox: React.FC<CheckboxProps> = ({ label, ...props }) => (
   <div className="flex items-center mb-4">
     <input
       type="checkbox"
-      className="w-4 h-4 text-blue-600 bg-slate-800 border-slate-700 rounded focus:ring-blue-500 focus:ring-2"
+      className="w-4 h-4 text-purple-600 bg-white border-slate-300 rounded focus:ring-purple-500 focus:ring-2"
       {...props}
     />
-    <label className="ml-2 text-sm font-medium text-slate-300">{label}</label>
+    <label className="ml-2 text-sm font-medium text-slate-700">{label}</label>
   </div>
 );
 
@@ -72,16 +72,16 @@ export const Section: React.FC<SectionProps> = ({ title, children, defaultOpen =
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="border-b border-slate-700/50">
+    <div className="bg-white rounded-3xl shadow-lg mb-6 overflow-hidden">
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex justify-between items-center w-full py-4 px-4 text-left hover:bg-slate-800/50 transition-colors"
+        className="flex justify-between items-center w-full py-5 px-6 text-left hover:bg-slate-50 transition-colors"
       >
-        <h3 className="text-lg font-semibold text-slate-200">{title}</h3>
+        <h3 className="text-lg font-bold text-slate-900">{title}</h3>
         {isOpen ? <ChevronUp size={20} className="text-slate-400" /> : <ChevronDown size={20} className="text-slate-400" />}
       </button>
-      {isOpen && <div className="p-4 bg-slate-900/50 animate-in fade-in slide-in-from-top-2 duration-200">{children}</div>}
+      {isOpen && <div className="p-6 pt-0 animate-in fade-in slide-in-from-top-2 duration-200">{children}</div>}
     </div>
   );
 };
@@ -120,7 +120,7 @@ export const StringArrayInput: React.FC<StringArrayInputProps> = ({ label, value
 
   return (
     <div className="mb-4">
-      <label className="block text-sm font-medium text-slate-300 mb-2">{label}</label>
+      <label className="block text-sm font-medium text-slate-700 mb-2">{label}</label>
       <div className="flex gap-2 mb-2">
         <input
           type="text"
@@ -128,24 +128,24 @@ export const StringArrayInput: React.FC<StringArrayInputProps> = ({ label, value
           onChange={(e) => setCurrentInput(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
-          className="flex-1 bg-slate-800 border border-slate-700 rounded-md px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-1 bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-sm"
         />
         <button
           type="button"
           onClick={addItem}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-md transition-colors"
+          className="bg-lime-400 hover:bg-lime-500 text-slate-900 px-3 py-2 rounded-xl transition-colors font-medium shadow-sm"
         >
           <Plus size={16} />
         </button>
       </div>
       <div className="flex flex-wrap gap-2">
         {values.map((val, idx) => (
-          <span key={idx} className="inline-flex items-center bg-slate-700 text-slate-200 text-xs px-2 py-1 rounded-full border border-slate-600">
+          <span key={idx} className="inline-flex items-center bg-lime-100 text-lime-800 text-xs px-3 py-1.5 rounded-full border border-lime-200 font-medium">
             {val}
             <button
               type="button"
               onClick={() => removeItem(idx)}
-              className="ml-1.5 text-slate-400 hover:text-red-400"
+              className="ml-1.5 text-lime-600 hover:text-lime-900"
             >
               <X size={12} />
             </button>
@@ -166,7 +166,7 @@ interface ComplexArrayInputProps<T> {
 }
 
 export function ComplexArrayInput<T>({ label, items, renderItem, onAdd, onUpdate, emptyLabel = "No items added." }: ComplexArrayInputProps<T>) {
-  
+
   const handleUpdateItem = (index: number, newItem: T) => {
     const newItems = [...items];
     newItems[index] = newItem;
@@ -182,28 +182,28 @@ export function ComplexArrayInput<T>({ label, items, renderItem, onAdd, onUpdate
   return (
     <div className="mb-6">
       <div className="flex justify-between items-center mb-3">
-        <label className="text-sm font-medium text-slate-300">{label}</label>
+        <label className="text-sm font-medium text-slate-700">{label}</label>
         <button
           type="button"
           onClick={onAdd}
-          className="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-600 text-blue-400 px-3 py-1.5 rounded-md flex items-center transition-colors"
+          className="text-xs bg-white hover:bg-slate-50 border border-slate-200 text-purple-600 px-3 py-1.5 rounded-xl flex items-center transition-colors shadow-sm font-medium"
         >
           <Plus size={14} className="mr-1" /> Add
         </button>
       </div>
-      
+
       {items.length === 0 ? (
-        <div className="text-sm text-slate-500 italic p-4 border border-slate-800 border-dashed rounded-md text-center">
+        <div className="text-sm text-slate-400 italic p-4 border border-slate-200 border-dashed rounded-xl text-center">
           {emptyLabel}
         </div>
       ) : (
         <div className="space-y-4">
           {items.map((item, index) => (
-            <div key={index} className="bg-slate-800/50 border border-slate-700 rounded-lg p-4 relative">
+            <div key={index} className="bg-slate-50 border border-slate-200 rounded-2xl p-4 relative shadow-sm">
               <button
                 type="button"
                 onClick={() => handleRemoveItem(index)}
-                className="absolute top-2 right-2 text-slate-500 hover:text-red-400 p-1"
+                className="absolute top-2 right-2 text-slate-400 hover:text-red-500 p-1"
                 title="Remove Item"
               >
                 <Trash2 size={16} />
