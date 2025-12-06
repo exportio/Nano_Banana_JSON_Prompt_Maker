@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { Copy, Check, RefreshCw, Wand2, Menu, X as XIcon } from 'lucide-react';
+import bananaLogo from './banana1sm.png';
 import {
   TextInput,
   SelectInput,
@@ -101,8 +102,10 @@ const App = () => {
 
         {/* Desktop Header */}
         <div className="hidden md:flex items-center p-6 border-b border-transparent sticky top-0 z-10">
-          <span className="bg-gradient-to-br from-lime-400 to-green-500 w-8 h-8 rounded-xl flex items-center justify-center text-slate-900 font-bold shadow-lg mr-3">N</span>
-          <h1 className="text-xl font-bold text-slate-900">Nano Banana Generator</h1>
+          <img src={bananaLogo} alt="Nano Banana" className="w-8 h-10 rounded-xl shadow-lg mr-3" />
+          <h1 className="text-4xl font-black tracking-tight bg-gradient-to-r from-lime-600 via-green-600 to-emerald-700 bg-clip-text text-transparent drop-shadow-sm">
+            Nano Banana Prompt Generator
+          </h1>
           <div className="ml-auto">
             <button onClick={handleReset} className="flex items-center text-xs text-slate-500 hover:text-slate-900 px-3 py-1.5 rounded-md hover:bg-white/50 transition-colors font-medium">
               <RefreshCw size={12} className="mr-1.5" /> Reset
@@ -499,8 +502,8 @@ const App = () => {
             <button
               onClick={handleCopy}
               className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${copied
-                  ? 'bg-green-500 text-white'
-                  : 'bg-purple-600 hover:bg-purple-700 text-white'
+                ? 'bg-green-500 text-white'
+                : 'bg-purple-600 hover:bg-purple-700 text-white'
                 }`}
             >
               {copied ? <Check size={16} /> : <Copy size={16} />}
