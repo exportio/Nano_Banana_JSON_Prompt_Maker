@@ -1,0 +1,5 @@
+{
+  "name": "Nano Banana JSON Generator",
+  "description": "A visual form builder to generate structured JSON prompts for Gemini Nano Banana image generation models.",
+  "requestFramePermissions": []
+}
