@@ -497,7 +497,7 @@ const App = () => {
       <div className={`fixed inset-0 md:relative md:inset-auto md:w-[45%] lg:w-[40%] bg-slate-900 border-l border-slate-800 flex flex-col z-30 transition-transform duration-300 transform ${showPreviewMobile ? 'translate-y-0' : 'translate-y-full md:translate-y-0'}`}>
 
         <div className="flex items-center justify-between p-4 border-b border-slate-800 bg-slate-900">
-          <h2 className="font-semibold text-slate-200">JSON Output</h2>
+          <h2 className="font-semibold text-slate-200">Paste JSON Output into Gemini</h2>
           <div className="flex gap-2">
             <button
               onClick={handleCopy}
