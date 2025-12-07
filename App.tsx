@@ -22,7 +22,7 @@ import { INITIAL_FORM_STATE } from './constants';
 const App = () => {
   const [formData, setFormData] = useState<NanoBananaSchema>(INITIAL_FORM_STATE);
   const [copied, setCopied] = useState(false);
-  const [showPreviewMobile, setShowPreviewMobile] = useState(false);
+
 
   // --- Handlers ---
 
@@ -81,7 +81,7 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row overflow-hidden">
+    <div className="min-h-screen flex flex-col md:flex-row md:overflow-hidden">
 
       {/* Mobile Header */}
       <div className="md:hidden flex items-center justify-between p-4 border-b border-slate-200 bg-white/80 backdrop-blur-md z-20 sticky top-0">
@@ -89,16 +89,11 @@ const App = () => {
           <span className="bg-gradient-to-br from-lime-400 to-green-500 w-8 h-8 rounded-lg flex items-center justify-center text-slate-900 font-bold shadow-lg">N</span>
           <h1 className="font-bold text-lg text-slate-900">Nano Banana</h1>
         </div>
-        <button
-          onClick={() => setShowPreviewMobile(!showPreviewMobile)}
-          className="text-slate-500 p-2 hover:bg-slate-100 rounded-md"
-        >
-          {showPreviewMobile ? <XIcon size={24} /> : <Wand2 size={24} />}
-        </button>
+
       </div>
 
       {/* LEFT PANEL: FORM SCROLLABLE */}
-      <div className={`flex-1 h-[calc(100vh-64px)] md:h-screen overflow-y-auto bg-transparent transition-all ${showPreviewMobile ? 'hidden' : 'block'}`}>
+      <div className="flex-1 w-full md:h-screen md:overflow-y-auto bg-transparent">
 
         {/* Desktop Header */}
         <div className="hidden md:flex items-center p-6 border-b border-transparent sticky top-0 z-10">
@@ -493,8 +488,8 @@ const App = () => {
         </div>
       </div>
 
-      {/* RIGHT PANEL: JSON PREVIEW (Hidden on mobile unless toggled) */}
-      <div className={`fixed inset-0 md:relative md:inset-auto md:w-[45%] lg:w-[40%] bg-slate-900 border-l border-slate-800 flex flex-col z-30 transition-transform duration-300 transform ${showPreviewMobile ? 'translate-y-0' : 'translate-y-full md:translate-y-0'}`}>
+      {/* RIGHT PANEL: JSON PREVIEW */}
+      <div className="w-full h-[80vh] md:h-auto md:w-[45%] lg:w-[40%] bg-slate-900 border-t md:border-t-0 md:border-l border-slate-800 flex flex-col flex-shrink-0">
 
         <div className="flex items-center justify-between p-4 border-b border-slate-800 bg-slate-900">
           <h2 className="font-semibold text-slate-200">Paste JSON Output into Gemini</h2>
@@ -508,12 +503,6 @@ const App = () => {
             >
               {copied ? <Check size={16} /> : <Copy size={16} />}
               {copied ? 'Copied' : 'Copy JSON'}
-            </button>
-            <button
-              onClick={() => setShowPreviewMobile(false)}
-              className="md:hidden p-2 text-slate-400 hover:bg-slate-800 rounded-md"
-            >
-              <XIcon size={24} />
             </button>
           </div>
         </div>
